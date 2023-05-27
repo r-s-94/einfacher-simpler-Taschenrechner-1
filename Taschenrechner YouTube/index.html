@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taschenrechner</title>
+    <link rel="stylesheet" href="Tf.css">
+    <link rel="manifest" href="manifest.webmanifest">
+    
+    
+    <script>
+
+        function appendOperartion(operation) {
+            document.getElementById("resultArea").textContent += operation;
+        }
+
+        function result(){        
+        let container = document.getElementById("resultArea"),
+            result = eval(container.innerHTML);
+            container.innerHTML = result;
+
+        }
+
+        function correction() {
+            let container = document.getElementById("resultArea");
+            if (container.innerHTML.endsWith(' ')) {
+                container.innerHTML = container.innerHTML.slice(0, -3);
+
+            } else {
+                container.innerHTML = container.innerHTML.slice(0, -1);
+            }
+
+        }
+
+        function clean() {
+            let container = document.getElementById("resultArea");
+                container.innerHTML = container.innerHTML.slice(0, null);
+
+        }
+
+    </script>
+
+
+
+</head>
+<body>
+
+    <div id="resultArea"></div>
+
+    <table>
+        
+        <tr>
+            <td></td>
+            <td  ></td>
+            <td onclick="correction()" class="btn-Cor" >Cor</td>
+            <td onclick="clean()" class="btn-C">C</td>
+        </tr>
+
+        <tr>
+            <td onclick="appendOperartion(7)">7</td>
+            <td onclick="appendOperartion(8)">8</td>
+            <td onclick="appendOperartion(9)">9</td>
+            <td onclick="appendOperartion(' / ')" class="btn-green">&divide;</td>
+        </tr>
+
+        <tr>
+            <td onclick="appendOperartion(4)">4</td>
+            <td onclick="appendOperartion(5)">5</td>
+            <td onclick="appendOperartion(6)">6</td>
+            <td onclick="appendOperartion(' * ')" class="btn-green">&times;</td>
+        </tr>
+
+        <tr>
+            <td onclick="appendOperartion(1)">1</td>
+            <td onclick="appendOperartion(2)">2</td>
+            <td onclick="appendOperartion(3)">3</td>
+            <td onclick="appendOperartion(' - ')" class="btn-green">-</td>
+        </tr>
+
+        <tr>
+            
+            <td onclick="appendOperartion(',')">.</td>
+            <td onclick="appendOperartion(0)">0</td>
+            <td onclick="result()" id="result">=</td>
+            <td onclick="appendOperartion(' + ')" class="btn-green">+</td>
+        </tr>
+
+            
+                    
+
+
+    </table>
+
+
+</body>
+</html>

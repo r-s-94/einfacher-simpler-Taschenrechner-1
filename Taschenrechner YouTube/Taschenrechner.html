@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taschenrechner</title>
+    <link rel="stylesheet" href="Taschenrechnerstyle.css">
+    
+    
+    <script>
+
+        /*  bei dem Taschenrechnerbeispiel hat jede Funktion die id vom HTML-Element = resultArea bekommen 
+        
+        */
+        
+        function appendOperartion(operation) 
+        /*  die Bezeichnung operation sind die Parameter in den () Klammer 
+            von der Tabelle, werden also gleich automatisch als Parameter angenommen und weitergegeben
+        
+        */ 
+                                                {
+            document.getElementById("resultArea").innerHTML += operation;   
+            
+        
+        }
+
+        function result(){        
+            const shortsafeCalculation = document.getElementById("resultArea");
+            /*  dei Variable dient dazu den Inhalt des HTML-Element zu speichern
+        
+            */
+            const endResult = eval(shortsafeCalculation.innerHTML); 
+            /*  eval ist eine Methode von JavaScript = eval Methode rechnet eingegebne Operatoren seltsständig aus, 
+                in den Klammern () von eval müssen die Parameter angegeben sein
+
+                die Variable in der der Inhalt aus dem HTML-Element gespeichert ist muss als mit der Methode 
+                innerHTML stehen damit der Inhalt vom HTML-Dokument übernohmen wird
+
+                in der Variable endResult wird als Wert die mathematische Methode eval = evaluieren =
+                berechnen gespeichert, die als Parameter in den () Klammern den Inhalt vom HTML-Element
+                besitzt zusammen mit der Methode innerHTML durch eine . Punkt verknüpft 
+        
+            */ 
+            shortsafeCalculation.innerHTML = endResult;  
+            /*  die Variable shortsafecalculation wird hier mehrfach verwendet:
+                1. um auf den Inhalt des HTML-Element zuzugreifen
+                
+                2. um die Berechnung durchzuführen
+                
+                3. als Ausgabecode, da in der Varibale die id = document.getElementById bereits vorhanden
+                ist und sie mit der Methode innerHTML als Ausgabecode typisch inverbindung steht
+        
+            */  
+
+        }
+
+        /*  auch diese Funktion besitzt die id des HTML-Elements extra/gesondert
+        
+        */
+        function correction() {
+            const shortsafeCalculation = document.getElementById("resultArea");
+            if (shortsafeCalculation.innerHTML.endsWith(' ')) {
+                /*  in der Bedingung wird die Variable mit innerHTML und ausschlaggebend der Methode
+                    endsWith in verbindung gestzt
+
+                    die Methode endsWith dient dazu den letzten Teil eines String zuverändern 
+                
+                */
+
+                shortsafeCalculation.innerHTML = shortsafeCalculation.innerHTML.slice(0, -3); // -> eingestellte Löschefunktion/ einrücken
+
+                /*  shortsafeCalculation.innerHTML = shortsafeCalculation.innerHTML.slice(0, -3); -> in diesem Beipiel,
+                    steht die Konstante in verbindung mit innerHTML/ textContent auch möglich mit der Methode slice in Verbindung/ im Zusammenhang 
+                
+                    die Methode endsWith steht mit der Methode slice in Verbindung
+
+                */
+
+            } else {
+                shortsafeCalculation.innerHTML = shortsafeCalculation.innerHTML.slice(0, -1);
+            
+            }
+
+        }
+
+        function clean() {
+            const shortsafeCalculation = document.getElementById("resultArea");
+            shortsafeCalculation.innerHTML = shortsafeCalculation.innerHTML .slice(0, null); // slice= Textinhalt auf Null setzt/ eine Art Löschfunktion
+
+        }
+
+    </script>
+
+
+
+</head>
+<body>
+
+    <div id="resultArea"></div>
+
+    <table>
+        
+        <tr>
+            <td></td>
+            <td></td>
+            <td onclick="correction()" class="btn-Cor" >Cor</td>
+            <td onclick="clean()" class="btn-C" >C</td>
+        </tr>
+
+        <tr>
+            <td onclick="appendOperartion(7 /*das ist ein Parameter für die function appendOperartion = (operation), so wie die anderen Zahlen auch */)">7</td>
+            <td onclick="appendOperartion(8 /* die Zahl ist = der Parameter operation bei der function appendOperartion */)">8</td>
+            <td onclick="appendOperartion(9)">9</td>
+            <td onclick="appendOperartion(' / ')" class="btn-green">&divide;</td>
+        </tr>
+
+        <tr>
+            <td onclick="appendOperartion(4)">4</td>
+            <td onclick="appendOperartion(5)">5</td>
+            <td onclick="appendOperartion(6)">6</td>
+            <td onclick="appendOperartion(' * ')" class="btn-green">&times;</td>
+        </tr>
+
+        <tr>
+            <td onclick="appendOperartion(1)">1</td>
+            <td onclick="appendOperartion(2)">2</td>
+            <td onclick="appendOperartion(3)">3</td>
+            <td onclick="appendOperartion(' - ')" class="btn-green">-</td>
+        </tr>
+
+        <tr>
+            
+            <td onclick="appendOperartion(',')">.</td>
+            <td onclick="appendOperartion(0)">0</td>
+            <td onclick="result()" id="result">=</td>
+            <td onclick="appendOperartion(' + ')" class="btn-green">+</td>
+        </tr>
+
+    </table>
+
+
+</body>
+</html>
